@@ -1,0 +1,31 @@
+{
+  "name": "تقييم المزاج العام للمريض — دار التداوي",
+  "short_name": "تقييم المزاج",
+  "description": "استمارة تقييم المزاج العام للمريض بست لغات مع طباعة A4 — الدكتور هاني البطل",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "./",
+  "scope": "./",
+  "id": "./",
+  "display": "minimal-ui",
+  "background_color": "#FBFAF5",
+  "theme_color": "#1F6F52",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
