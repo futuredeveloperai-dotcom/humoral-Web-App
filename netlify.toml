@@ -4,11 +4,6 @@
 
 # عامل الخدمة يجب ألّا يُخزَّن حتى تصل التحديثات فوراً
 [[headers]]
-  for = "/humoral/sw.js"
-  [headers.values]
-    Cache-Control = "no-cache"
-
-[[headers]]
-  for = "/mazag/sw.js"
+  for = "/sw.js"
   [headers.values]
     Cache-Control = "no-cache"

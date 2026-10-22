@@ -5,20 +5,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#FBFAF4">
 <meta name="color-scheme" content="light">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="طب الأخلاط">
+<meta name="application-name" content="طب الأخلاط">
 <title>تطبيق طب الأخلاط — دار التداوي</title>
 <meta name="description" content="تطبيق طب الأخلاط واستمارة تقييم المزاج من دار التداوي — الدكتور هاني البطل. يعمل على الآيفون والأندرويد والكمبيوتر.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="دار التداوي">
 <meta property="og:title" content="تطبيق طب الأخلاط — دار التداوي">
 <meta property="og:description" content="لوائح الأطعمة حسب المزاج، مبادئ طب الأخلاط، واستمارة تقييم المزاج — الدكتور هاني البطل">
-<meta property="og:image" content="https://dar-altadawi.netlify.app/humoral/icons/icon-512.png">
+<meta property="og:image" content="https://dar-altadawi.netlify.app/icons/icon-512.png">
 <meta property="og:image:width" content="512">
 <meta property="og:image:height" content="512">
 <meta property="og:url" content="https://dar-altadawi.netlify.app/">
 <meta property="og:locale" content="ar_AR">
 <meta name="twitter:card" content="summary">
-<link rel="icon" type="image/png" sizes="64x64" href="humoral/icons/favicon-64.png">
-<link rel="apple-touch-icon" sizes="180x180" href="humoral/icons/apple-touch-icon-180.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="64x64" href="icons/favicon-64.png">
+<link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon-180.png">
 <style>
 :root{--bg:#FBFAF4;--surface:#fff;--line:#E7E5D9;--ink:#2C2721;--soft:#6E675A;--brand:#3E7A44;--gold:#C9A227}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -26,16 +32,33 @@ html,body{margin:0;padding:0;background:var(--bg)}
 body{
   color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"SF Arabic","Geeza Pro","Segoe UI",system-ui,sans-serif;
   font-size:16px;line-height:1.7;-webkit-text-size-adjust:100%;
-  padding:calc(24px + env(safe-area-inset-top,0)) 16px calc(32px + env(safe-area-inset-bottom,0));
+  padding:calc(20px + env(safe-area-inset-top,0)) 16px calc(32px + env(safe-area-inset-bottom,0));
 }
 main{max-width:520px;margin:0 auto}
-.mark{border:2px dotted var(--gold);border-radius:26px;padding:24px 22px 18px;background:var(--surface);text-align:center;
+button{font:inherit;color:inherit;cursor:pointer;touch-action:manipulation}
+img,button{-webkit-touch-callout:none}
+.mark{border:2px dotted var(--gold);border-radius:26px;padding:22px 22px 16px;background:var(--surface);text-align:center;
   box-shadow:0 1px 2px rgba(44,39,33,.05),0 8px 20px -12px rgba(44,39,33,.16)}
-.mark img{width:120px;height:120px;object-fit:contain;display:block;margin:0 auto;border-radius:28px}
-.mark .b1{font-size:30px;font-weight:800;margin-top:10px;line-height:1.25}
-.mark .rule{width:56px;height:2px;border-radius:2px;background:var(--gold);opacity:.65;margin:12px auto}
-.mark .b2{font-size:20px;font-weight:700;color:var(--brand)}
-h2{font-size:15px;font-weight:700;color:var(--soft);margin:26px 4px 10px}
+.mark img{width:112px;height:112px;object-fit:contain;display:block;margin:0 auto;border-radius:26px}
+.mark .b1{font-size:28px;font-weight:800;margin-top:8px;line-height:1.25}
+.mark .rule{width:56px;height:2px;border-radius:2px;background:var(--gold);opacity:.65;margin:10px auto}
+.mark .b2{font-size:19px;font-weight:700;color:var(--brand)}
+.appname{text-align:center;font-size:19px;font-weight:800;margin:18px 0 0;line-height:1.4}
+h2{font-size:14.5px;font-weight:700;color:var(--soft);margin:22px 4px 10px;text-align:center}
+h2.start{text-align:start}
+.langpick{position:relative;width:100%}
+.langpick select{
+  width:100%;appearance:none;-webkit-appearance:none;font:inherit;font-size:17px;font-weight:700;color:var(--ink);
+  background:var(--surface);border:1.5px solid var(--line);border-radius:15px;padding:16px 50px;text-align:center;text-align-last:center;
+  box-shadow:0 1px 2px rgba(44,39,33,.05);cursor:pointer;
+}
+.langpick select:focus{outline:none;border-color:var(--brand)}
+.langpick .globe,.langpick .caret{position:absolute;top:50%;transform:translateY(-50%);pointer-events:none}
+.langpick .globe{color:var(--brand);display:flex}
+.langpick .globe svg{width:22px;height:22px}
+.langpick .caret{color:var(--soft);font-size:14px}
+[dir=rtl] .langpick .globe{right:16px} [dir=ltr] .langpick .globe{left:16px}
+[dir=rtl] .langpick .caret{left:18px}  [dir=ltr] .langpick .caret{right:18px}
 a.app{display:flex;align-items:center;gap:14px;text-decoration:none;color:inherit;background:var(--surface);
   border:1px solid var(--line);border-radius:18px;padding:16px 18px;margin-bottom:12px;
   box-shadow:0 1px 2px rgba(44,39,33,.05),0 8px 20px -12px rgba(44,39,33,.16);touch-action:manipulation}
@@ -45,7 +68,12 @@ a.app .ic svg{width:28px;height:28px}
 a.app .t{flex:1;min-width:0}
 a.app b{display:block;font-size:18px;font-weight:800;line-height:1.3}
 a.app span{display:block;font-size:13.5px;color:var(--soft);margin-top:3px}
+a.app .fb{color:var(--brand);font-weight:700}
 a.app .chev{flex:0 0 auto;color:var(--soft);font-size:22px}
+.cta{display:block;width:100%;margin:6px 0 0;border-radius:15px;padding:16px;text-align:center;font-size:16.5px;font-weight:700;
+  color:#fff;background:var(--brand);border:0;box-shadow:0 8px 20px -10px rgba(62,122,68,.6)}
+.cta.installbtn{background:var(--surface);color:var(--brand);border:1.5px solid var(--brand);box-shadow:none}
+.installbtn[hidden]{display:none !important}
 .howto{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:6px 18px;margin-top:4px}
 .howto details{padding:12px 0;border-top:1px solid var(--line)}
 .howto details:first-child{border-top:0}
@@ -56,6 +84,7 @@ a.app .chev{flex:0 0 auto;color:var(--soft);font-size:22px}
 .howto ol{margin:8px 0 0;padding-inline-start:22px;color:var(--ink)}
 .howto li{margin:5px 0}
 .howto .note{font-size:14px;color:var(--soft);margin:8px 0 0}
+.howto .note.ink{color:var(--ink);margin-top:6px}
 footer{text-align:center;font-size:13px;color:var(--soft);margin-top:28px;line-height:1.9}
 footer a{color:var(--brand);text-decoration:none;font-weight:700}
 @media (prefers-color-scheme:dark){
@@ -67,62 +96,366 @@ footer a{color:var(--brand);text-decoration:none;font-weight:700}
 <body>
 <main>
   <div class="mark">
-    <img src="humoral/icons/icon-192.png" alt="شعار دار التداوي" width="120" height="120">
-    <div class="b1">دار التداوي</div>
+    <img src="icons/icon-192.png" alt="" width="112" height="112">
+    <div class="b1" data-t="brand">دار التداوي</div>
     <div class="rule"></div>
-    <div class="b2">الدكتور هاني البطل</div>
+    <div class="b2" data-t="doctor">الدكتور هاني البطل</div>
+  </div>
+  <div class="appname" data-t="title">تطبيق طب الأخلاط</div>
+
+  <h2 data-t="chooseLang">اختر اللغة</h2>
+  <div class="langpick">
+    <span class="globe" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 3 2.5 15 0 18M12 3c-2.5 3-2.5 15 0 18"/></svg></span>
+    <select id="langsel" aria-label="Language"></select>
+    <span class="caret" aria-hidden="true">&#9662;</span>
   </div>
 
-  <h2>اختر التطبيق</h2>
-  <a class="app" href="humoral/">
+  <h2 data-t="chooseApp">اختر التطبيق</h2>
+  <a class="app" id="link-humoral" href="humoral/">
     <div class="ic" style="background:#3E7A44"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13h18a9 9 0 01-18 0z"/><path d="M12 4v2M2 21h20"/></svg></div>
-    <div class="t"><b>تطبيق طب الأخلاط</b><span>لوائح الأطعمة للأمزجة الأربعة، المعرفة، اختبار المزاج، والعيادة · ٨ لغات</span></div>
+    <div class="t"><b data-t="app1">تطبيق طب الأخلاط</b><span data-t="app1d"></span></div>
     <div class="chev">‹</div>
   </a>
-  <a class="app" href="mazag/">
+  <a class="app" id="link-mazag" href="mazag/">
     <div class="ic" style="background:#1F6F52"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h7M9 9h2"/></svg></div>
-    <div class="t"><b>استمارة تقييم المزاج العام للمريض</b><span>٢٩ بنداً وجدول النبض مع طباعة على ٥ صفحات A4 · ٦ لغات</span></div>
+    <div class="t"><b data-t="app2">استمارة تقييم المزاج العام للمريض</b><span data-t="app2d"></span><span class="fb" id="app2fb" hidden></span></div>
     <div class="chev">‹</div>
   </a>
 
-  <h2>كيف أضيفه إلى شاشة الهاتف كتطبيق؟</h2>
-  <div class="howto">
-    <details open>
-      <summary>الطريقة الأسهل</summary>
-      <p class="note" style="margin-top:6px;color:var(--ink)">افتح التطبيق المطلوب من الزرّ أعلاه، واضغط زر <b>«تثبيت التطبيق على الهاتف»</b> في شاشته الأولى: على أندرويد يفتح نافذة التثبيت مباشرة، وعلى الآيفون يعرض الخطوات.</p>
-    </details>
-    <details>
-      <summary>آيفون وآيباد (Safari)</summary>
-      <ol>
-        <li>افتح التطبيق المطلوب من الزرّ أعلاه في متصفح <b>Safari</b>.</li>
-        <li>اضغط زر <b>المشاركة</b> (المربّع الذي يخرج منه سهم أسفل الشاشة أو أعلاها).</li>
-        <li>اختر <b>«إضافة إلى الشاشة الرئيسية»</b> ثم <b>إضافة</b>.</li>
-      </ol>
-      <p class="note">تظهر أيقونة دار التداوي على الشاشة الرئيسية ويعمل التطبيق بعدها بدون إنترنت.</p>
-    </details>
-    <details>
-      <summary>أندرويد (Chrome)</summary>
-      <ol>
-        <li>افتح التطبيق المطلوب من الزرّ أعلاه في متصفح <b>Chrome</b>.</li>
-        <li>اضغط القائمة <b>⋮</b> أعلى الشاشة، وانزل إلى <b>آخر القائمة</b>.</li>
-        <li>اختر <b>«تثبيت التطبيق»</b> (Install app) أو <b>«إضافة إلى الشاشة الرئيسية»</b>.</li>
-      </ol>
-      <p class="note">كذلك يتوفّر تطبيق طب الأخلاط كملف APK وعلى Google Play.</p>
-    </details>
-    <details>
-      <summary>ملاحظات</summary>
-      <ol>
-        <li>أوّل فتح يحتاج إنترنت لتحميل التطبيق؛ بعدها يعمل بلا اتصال.</li>
-        <li>الإجابات والمفضّلة تُحفظ على جهازك فقط ولا تُرسَل إلى أي خادم.</li>
-        <li>استمارة تقييم المزاج تفتح في المتصفح نفسه حتى تعمل الطباعة وحفظ الـPDF.</li>
-      </ol>
-    </details>
-  </div>
+  <button class="cta installbtn" id="pwa-install" type="button" hidden></button>
+
+  <h2 data-t="howto">كيف أضيفه إلى شاشة الهاتف كتطبيق؟</h2>
+  <div class="howto" id="howto"></div>
 
   <footer>
-    مؤسسة دار التداوي — الدكتور هاني البطل<br>
+    <span id="footer"></span><br>
     <a href="https://www.drhanielbatal.com" target="_blank" rel="noopener">www.drhanielbatal.com</a>
   </footer>
 </main>
+
+<script>
+/* الصفحة الجامعة: اللغة تُختار هنا أولاً، ثم تُفتح التطبيقات بها مباشرة. النصوص بثماني لغات. */
+(function () {
+  var LANGS = [
+    { code: 'ar', name: 'العربية', dir: 'rtl' }, { code: 'en', name: 'English', dir: 'ltr' },
+    { code: 'fr', name: 'Français', dir: 'ltr' }, { code: 'hi', name: 'हिन्दी', dir: 'ltr' },
+    { code: 'zh', name: '中文', dir: 'ltr' }, { code: 'tr', name: 'Türkçe', dir: 'ltr' },
+    { code: 'ru', name: 'Русский', dir: 'ltr' }, { code: 'de', name: 'Deutsch', dir: 'ltr' }
+  ];
+  var MAZAG_LANGS = ['ar', 'en', 'fr', 'tr', 'ru', 'de'];
+  var T = {
+    ar: { title: 'تطبيق طب الأخلاط', brand: 'دار التداوي', doctor: 'الدكتور هاني البطل',
+      chooseLang: 'اختر اللغة', chooseApp: 'اختر التطبيق',
+      app1: 'تطبيق طب الأخلاط', app1d: 'لوائح الأطعمة للأمزجة الأربعة، المعرفة، اختبار المزاج، والعيادة · ٨ لغات',
+      app2: 'استمارة تقييم المزاج العام للمريض', app2d: '٢٩ بنداً وجدول النبض مع طباعة على ٥ صفحات A4 · ٦ لغات',
+      app2fb: '', howto: 'كيف أضيفه إلى شاشة الهاتف كتطبيق؟', easiest: 'الطريقة الأسهل',
+      easiestText: 'اضغط زر «تثبيت التطبيق على الهاتف» أعلاه: على أندرويد يفتح نافذة التثبيت مباشرة، وعلى الآيفون يعرض الخطوات.',
+      ios: 'آيفون وآيباد (Safari)',
+      iosSteps: ['افتح هذه الصفحة في متصفح Safari.', 'اضغط زر المشاركة (المربّع الذي يخرج منه سهم) أسفل الشاشة أو أعلاها.', 'اختر «إضافة إلى الشاشة الرئيسية» ثم إضافة.'],
+      iosNote: 'تظهر أيقونة دار التداوي على الشاشة الرئيسية ويعمل التطبيق بعدها بدون إنترنت.',
+      android: 'أندرويد (Chrome)',
+      androidSteps: ['افتح هذه الصفحة في متصفح Chrome.', 'اضغط القائمة ⋮ أعلى الشاشة وانزل إلى آخر القائمة.', 'اختر «تثبيت التطبيق» أو «إضافة إلى الشاشة الرئيسية».'],
+      androidNote: 'كذلك يتوفّر تطبيق طب الأخلاط كملف APK وعلى Google Play.',
+      notes: 'ملاحظات',
+      notesList: ['أوّل فتح يحتاج إنترنت لتحميل التطبيق؛ بعدها يعمل بلا اتصال.', 'الإجابات والمفضّلة تُحفظ على جهازك فقط ولا تُرسَل إلى أي خادم.', 'على الآيفون: إن لم تظهر شاشة الطباعة في الاستمارة، افتحها من متصفح Safari للطباعة أو حفظ الـPDF.'] },
+    en: { title: 'Humoral Medicine App', brand: 'Dar Al-Tadawee', doctor: 'Dr. Hani El Batal',
+      chooseLang: 'Choose your language', chooseApp: 'Choose an app',
+      app1: 'Humoral Medicine App', app1d: 'Food lists for the four temperaments, knowledge, temperament quiz and the clinic · 8 languages',
+      app2: 'General Temperament Assessment Form', app2d: '29 items and a pulse table, printable on 5 A4 pages · 6 languages',
+      app2fb: '', howto: 'How do I add it to my phone as an app?', easiest: 'Easiest way',
+      easiestText: 'Tap the “Install the app on your phone” button above: on Android it opens the install dialog directly; on iPhone it shows the steps.',
+      ios: 'iPhone & iPad (Safari)',
+      iosSteps: ['Open this page in Safari.', 'Tap the Share button (the square with an arrow) at the bottom or top of the screen.', 'Choose “Add to Home Screen”, then Add.'],
+      iosNote: 'The Dar Al-Tadawee icon appears on your Home Screen and the app then works offline.',
+      android: 'Android (Chrome)',
+      androidSteps: ['Open this page in Chrome.', 'Tap the ⋮ menu at the top and scroll to the end of the menu.', 'Choose “Install app” or “Add to Home screen”.'],
+      androidNote: 'The Humoral Medicine app is also available as an APK and on Google Play.',
+      notes: 'Notes',
+      notesList: ['The first open needs internet to load the app; after that it works offline.', 'Answers and favourites are saved on your device only and never sent to any server.', 'On iPhone: if the print screen does not appear in the form, open it in Safari to print or save it as PDF.'] },
+    fr: { title: 'Application de médecine humorale', brand: 'Dar Al-Tadawee', doctor: 'Dr Hani El Batal',
+      chooseLang: 'Choisissez votre langue', chooseApp: 'Choisissez une application',
+      app1: 'Médecine humorale', app1d: 'Listes d’aliments pour les quatre tempéraments, savoir, test du tempérament et clinique · 8 langues',
+      app2: 'Formulaire d’évaluation générale du tempérament', app2d: '29 points et tableau du pouls, imprimable sur 5 pages A4 · 6 langues',
+      app2fb: '', howto: 'Comment l’ajouter au téléphone comme application ?', easiest: 'Le plus simple',
+      easiestText: 'Touchez le bouton « Installer l’application sur le téléphone » ci-dessus : sur Android, la fenêtre d’installation s’ouvre directement ; sur iPhone, les étapes s’affichent.',
+      ios: 'iPhone et iPad (Safari)',
+      iosSteps: ['Ouvrez cette page dans Safari.', 'Touchez le bouton Partager (le carré avec une flèche) en bas ou en haut de l’écran.', 'Choisissez « Sur l’écran d’accueil », puis Ajouter.'],
+      iosNote: 'L’icône apparaît sur l’écran d’accueil et l’application fonctionne ensuite hors ligne.',
+      android: 'Android (Chrome)',
+      androidSteps: ['Ouvrez cette page dans Chrome.', 'Touchez le menu ⋮ en haut et faites défiler jusqu’à la fin du menu.', 'Choisissez « Installer l’application » ou « Ajouter à l’écran d’accueil ».'],
+      androidNote: 'L’application est aussi disponible en APK et sur Google Play.',
+      notes: 'Remarques',
+      notesList: ['La première ouverture nécessite Internet ; ensuite l’application fonctionne hors ligne.', 'Les réponses et favoris sont enregistrés uniquement sur votre appareil.', 'Sur iPhone : si l’écran d’impression n’apparaît pas dans le formulaire, ouvrez-le dans Safari pour imprimer ou enregistrer en PDF.'] },
+    hi: { title: 'ह्यूमरल चिकित्सा ऐप', brand: 'दार अल-तदावी', doctor: 'डॉ. हानी अल-बताल',
+      chooseLang: 'अपनी भाषा चुनें', chooseApp: 'ऐप चुनें',
+      app1: 'ह्यूमरल चिकित्सा', app1d: 'चार प्रकृतियों के लिए भोजन सूचियाँ, ज्ञान, प्रकृति परीक्षण और क्लिनिक · 8 भाषाएँ',
+      app2: 'सामान्य प्रकृति मूल्यांकन फ़ॉर्म', app2d: '29 बिंदु और नाड़ी तालिका, 5 A4 पृष्ठों पर प्रिंट · 6 भाषाएँ',
+      app2fb: 'यह फ़ॉर्म अंग्रेज़ी में खुलेगा', howto: 'इसे फ़ोन पर ऐप की तरह कैसे जोड़ें?', easiest: 'सबसे आसान तरीका',
+      easiestText: 'ऊपर “फ़ोन पर ऐप इंस्टॉल करें” बटन दबाएँ: Android पर इंस्टॉल विंडो सीधे खुलती है; iPhone पर चरण दिखाए जाते हैं।',
+      ios: 'iPhone और iPad (Safari)',
+      iosSteps: ['इस पेज को Safari में खोलें।', 'स्क्रीन के नीचे या ऊपर Share बटन (तीर वाला वर्ग) दबाएँ।', '“होम स्क्रीन में जोड़ें” चुनें, फिर जोड़ें।'],
+      iosNote: 'होम स्क्रीन पर आइकन दिखेगा और ऐप फिर बिना इंटरनेट चलेगा।',
+      android: 'Android (Chrome)',
+      androidSteps: ['इस पेज को Chrome में खोलें।', 'ऊपर ⋮ मेनू दबाएँ और मेनू के अंत तक स्क्रॉल करें।', '“ऐप इंस्टॉल करें” या “होम स्क्रीन में जोड़ें” चुनें।'],
+      androidNote: 'ऐप APK और Google Play पर भी उपलब्ध है।',
+      notes: 'नोट्स',
+      notesList: ['पहली बार खोलने के लिए इंटरनेट चाहिए; उसके बाद यह ऑफ़लाइन चलता है।', 'उत्तर और पसंदीदा केवल आपके डिवाइस पर सहेजे जाते हैं।', 'iPhone पर: यदि फ़ॉर्म में प्रिंट स्क्रीन न दिखे, तो प्रिंट या PDF सेव करने के लिए इसे Safari में खोलें।'] },
+    zh: { title: '体液医学应用', brand: '达尔·塔达维', doctor: '哈尼·巴塔勒医生',
+      chooseLang: '选择语言', chooseApp: '选择应用',
+      app1: '体液医学', app1d: '四种体质的食物清单、知识、体质测试与诊所 · 8 种语言',
+      app2: '总体体质评估表', app2d: '29 个项目与脉搏表，可打印 5 页 A4 · 6 种语言',
+      app2fb: '此表格将以英文打开', howto: '如何将它添加到手机作为应用？', easiest: '最简单的方法',
+      easiestText: '点击上方“将应用安装到手机”按钮：在 Android 上会直接打开安装窗口；在 iPhone 上会显示步骤。',
+      ios: 'iPhone 与 iPad（Safari）',
+      iosSteps: ['在 Safari 中打开此页面。', '点击屏幕底部或顶部的“分享”按钮（带箭头的方框）。', '选择“添加到主屏幕”，然后点“添加”。'],
+      iosNote: '主屏幕上会出现图标，之后应用可离线使用。',
+      android: 'Android（Chrome）',
+      androidSteps: ['在 Chrome 中打开此页面。', '点击顶部的 ⋮ 菜单并滚动到菜单末尾。', '选择“安装应用”或“添加到主屏幕”。'],
+      androidNote: '该应用也提供 APK 并在 Google Play 上架。',
+      notes: '说明',
+      notesList: ['首次打开需要联网加载；之后可离线使用。', '答案与收藏仅保存在您的设备上，不会上传。', 'iPhone：如果表格中未出现打印界面，请在 Safari 中打开以打印或保存 PDF。'] },
+    tr: { title: 'Hıltlar Tıbbı Uygulaması', brand: 'Dar Al-Tadawee', doctor: 'Dr. Hani El Batal',
+      chooseLang: 'Dil seçin', chooseApp: 'Uygulama seçin',
+      app1: 'Hıltlar Tıbbı', app1d: 'Dört mizaç için yiyecek listeleri, bilgi, mizaç testi ve klinik · 8 dil',
+      app2: 'Genel Mizaç Değerlendirme Formu', app2d: '29 madde ve nabız tablosu, 5 A4 sayfa yazdırılabilir · 6 dil',
+      app2fb: '', howto: 'Telefona uygulama olarak nasıl eklerim?', easiest: 'En kolay yol',
+      easiestText: 'Yukarıdaki “Uygulamayı telefona yükle” düğmesine dokunun: Android’de yükleme penceresi doğrudan açılır; iPhone’da adımlar gösterilir.',
+      ios: 'iPhone ve iPad (Safari)',
+      iosSteps: ['Bu sayfayı Safari’de açın.', 'Ekranın altındaki veya üstündeki Paylaş düğmesine (oklu kare) dokunun.', '“Ana Ekrana Ekle”yi seçin, sonra Ekle’ye dokunun.'],
+      iosNote: 'Simge ana ekranda görünür ve uygulama sonrasında internetsiz çalışır.',
+      android: 'Android (Chrome)',
+      androidSteps: ['Bu sayfayı Chrome’da açın.', 'Üstteki ⋮ menüsüne dokunun ve menünün sonuna kaydırın.', '“Uygulamayı yükle” veya “Ana ekrana ekle”yi seçin.'],
+      androidNote: 'Uygulama ayrıca APK olarak ve Google Play’de mevcuttur.',
+      notes: 'Notlar',
+      notesList: ['İlk açılış için internet gerekir; sonrasında çevrimdışı çalışır.', 'Cevaplar ve favoriler yalnızca cihazınızda saklanır.', 'iPhone’da: Formda yazdırma ekranı görünmezse yazdırmak veya PDF kaydetmek için formu Safari’de açın.'] },
+    ru: { title: 'Приложение гуморальной медицины', brand: 'Дар Ат-Тадави', doctor: 'Д-р Хани эль-Баталь',
+      chooseLang: 'Выберите язык', chooseApp: 'Выберите приложение',
+      app1: 'Гуморальная медицина', app1d: 'Списки продуктов для четырёх темпераментов, знания, тест темперамента и клиника · 8 языков',
+      app2: 'Форма общей оценки темперамента', app2d: '29 пунктов и таблица пульса, печать на 5 страницах A4 · 6 языков',
+      app2fb: '', howto: 'Как добавить на телефон как приложение?', easiest: 'Самый простой способ',
+      easiestText: 'Нажмите кнопку «Установить приложение на телефон» выше: на Android сразу откроется окно установки; на iPhone будут показаны шаги.',
+      ios: 'iPhone и iPad (Safari)',
+      iosSteps: ['Откройте эту страницу в Safari.', 'Нажмите кнопку «Поделиться» (квадрат со стрелкой) внизу или вверху экрана.', 'Выберите «На экран Домой», затем «Добавить».'],
+      iosNote: 'Значок появится на экране «Домой», и приложение будет работать без интернета.',
+      android: 'Android (Chrome)',
+      androidSteps: ['Откройте эту страницу в Chrome.', 'Нажмите меню ⋮ вверху и прокрутите до конца меню.', 'Выберите «Установить приложение» или «Добавить на главный экран».'],
+      androidNote: 'Приложение также доступно в виде APK и в Google Play.',
+      notes: 'Примечания',
+      notesList: ['Для первого открытия нужен интернет; затем работает офлайн.', 'Ответы и избранное хранятся только на вашем устройстве.', 'На iPhone: если в форме не открывается экран печати, откройте её в Safari, чтобы распечатать или сохранить в PDF.'] },
+    de: { title: 'Humoralmedizin-App', brand: 'Dar Al-Tadawee', doctor: 'Dr. Hani El Batal',
+      chooseLang: 'Sprache wählen', chooseApp: 'App wählen',
+      app1: 'Humoralmedizin', app1d: 'Lebensmittellisten für die vier Temperamente, Wissen, Temperament-Test und Klinik · 8 Sprachen',
+      app2: 'Formular zur allgemeinen Temperamentsbewertung', app2d: '29 Punkte und Pulstabelle, druckbar auf 5 A4-Seiten · 6 Sprachen',
+      app2fb: '', howto: 'Wie füge ich es als App zum Telefon hinzu?', easiest: 'Der einfachste Weg',
+      easiestText: 'Tippen Sie oben auf „App auf dem Telefon installieren“: Auf Android öffnet sich direkt das Installationsfenster, auf dem iPhone werden die Schritte angezeigt.',
+      ios: 'iPhone & iPad (Safari)',
+      iosSteps: ['Öffnen Sie diese Seite in Safari.', 'Tippen Sie auf die Teilen-Schaltfläche (Quadrat mit Pfeil) unten oder oben auf dem Bildschirm.', 'Wählen Sie „Zum Home-Bildschirm“, dann Hinzufügen.'],
+      iosNote: 'Das Symbol erscheint auf dem Home-Bildschirm, danach funktioniert die App offline.',
+      android: 'Android (Chrome)',
+      androidSteps: ['Öffnen Sie diese Seite in Chrome.', 'Tippen Sie oben auf das Menü ⋮ und scrollen Sie bis zum Ende des Menüs.', 'Wählen Sie „App installieren“ oder „Zum Startbildschirm hinzufügen“.'],
+      androidNote: 'Die App ist auch als APK und bei Google Play erhältlich.',
+      notes: 'Hinweise',
+      notesList: ['Beim ersten Öffnen ist Internet nötig; danach funktioniert es offline.', 'Antworten und Favoriten werden nur auf Ihrem Gerät gespeichert.', 'Auf dem iPhone: Erscheint im Formular kein Druckbildschirm, öffnen Sie es in Safari, um zu drucken oder als PDF zu speichern.'] }
+  };
+  var KEYS = {};
+  LANGS.forEach(function (l) { KEYS[l.code] = l; });
+  function store(k, v) { try { localStorage.setItem(k, v); } catch (e) { } }
+  function load(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function initial() {
+    var m = /[?&]lang=([a-z]{2})/.exec(location.search || '');
+    if (m && KEYS[m[1]]) return m[1];
+    var s = load('tadawi.hub.lang');
+    if (s && KEYS[s]) return s;
+    var n = ((navigator.language || 'ar').slice(0, 2)).toLowerCase();
+    return KEYS[n] ? n : 'ar';
+  }
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+  function li(arr) { return '<ol>' + arr.map(function (s) { return '<li>' + esc(s) + '</li>'; }).join('') + '</ol>'; }
+  function apply(code) {
+    var t = T[code] || T.en, L = KEYS[code];
+    document.documentElement.setAttribute('lang', code);
+    document.documentElement.setAttribute('dir', L.dir);
+    document.title = t.title + ' — ' + t.brand;
+    var nodes = document.querySelectorAll('[data-t]');
+    for (var i = 0; i < nodes.length; i++) nodes[i].textContent = t[nodes[i].getAttribute('data-t')] || '';
+    var chev = L.dir === 'rtl' ? '‹' : '›';
+    var cs = document.querySelectorAll('a.app .chev');
+    for (var j = 0; j < cs.length; j++) cs[j].textContent = chev;
+    var mz = MAZAG_LANGS.indexOf(code) >= 0 ? code : 'en';
+    document.getElementById('link-humoral').setAttribute('href', 'humoral/?lang=' + code);
+    document.getElementById('link-mazag').setAttribute('href', 'mazag/?lang=' + mz);
+    var fb = document.getElementById('app2fb');
+    fb.textContent = t.app2fb || ''; fb.hidden = !t.app2fb;
+    document.getElementById('howto').innerHTML =
+      '<details open><summary>' + esc(t.easiest) + '</summary><p class="note ink">' + esc(t.easiestText) + '</p></details>' +
+      '<details><summary>' + esc(t.ios) + '</summary>' + li(t.iosSteps) + '<p class="note">' + esc(t.iosNote) + '</p></details>' +
+      '<details><summary>' + esc(t.android) + '</summary>' + li(t.androidSteps) + '<p class="note">' + esc(t.androidNote) + '</p></details>' +
+      '<details><summary>' + esc(t.notes) + '</summary>' + li(t.notesList) + '</details>';
+    document.getElementById('footer').textContent = t.brand + ' — ' + t.doctor;
+    var sel = document.getElementById('langsel');
+    if (sel.value !== code) sel.value = code;
+    /* التطبيقان يقرآن هذه المفاتيح أيضاً، فتبقى اللغة واحدة في كل مكان */
+    store('tadawi.hub.lang', code);
+    store('tadawi.web.v1.lang', JSON.stringify(code));
+    store('tadawi.mood.lang', mz);
+  }
+  var sel = document.getElementById('langsel');
+  LANGS.forEach(function (l) {
+    var o = document.createElement('option');
+    o.value = l.code; o.textContent = l.name; o.setAttribute('lang', l.code);
+    sel.appendChild(o);
+  });
+  sel.addEventListener('change', function () { apply(sel.value); });
+  apply(initial());
+})();
+</script>
+<script>
+/* زر «تثبيت التطبيق على الهاتف»: على أندرويد يفتح نافذة التثبيت مباشرةً،
+   وعلى الآيفون (حيث لا يسمح النظام بذلك) يعرض خطوات «إضافة إلى الشاشة الرئيسية» بلغة المستخدم.
+   لا يظهر داخل تطبيق أندرويد الأصلي ولا بعد التثبيت. */
+(function () {
+  if (window.AndroidBridge) return;
+  var ua = navigator.userAgent || '';
+  var isIOS = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  var isAndroid = /Android/.test(ua);
+  function installed() {
+    return navigator.standalone === true ||
+      !!(window.matchMedia && window.matchMedia('(display-mode: standalone)').matches);
+  }
+  var L = {
+    ar: { btn: 'تثبيت التطبيق على الهاتف', title: 'تثبيت التطبيق على الهاتف', close: 'إغلاق',
+      ios: ['افتح هذه الصفحة في متصفح <b>Safari</b>.',
+            'اضغط زر <b>المشاركة</b> (المربّع الذي يخرج منه سهم) أسفل الشاشة أو أعلاها.',
+            'اختر <b>«إضافة إلى الشاشة الرئيسية»</b> ثم <b>إضافة</b>.'],
+      android: ['افتح هذه الصفحة في متصفح <b>Chrome</b>.',
+                'اضغط القائمة <b>⋮</b> أعلى الشاشة وانزل إلى آخر القائمة.',
+                'اختر <b>«تثبيت التطبيق»</b> أو <b>«إضافة إلى الشاشة الرئيسية»</b>.'],
+      other: ['افتح هذه الصفحة في Chrome أو Safari على هاتفك، ثم من القائمة اختر «إضافة إلى الشاشة الرئيسية».'] },
+    en: { btn: 'Install the app on your phone', title: 'Install the app on your phone', close: 'Close',
+      ios: ['Open this page in <b>Safari</b>.',
+            'Tap the <b>Share</b> button (the square with an arrow) at the bottom or top of the screen.',
+            'Choose <b>“Add to Home Screen”</b>, then <b>Add</b>.'],
+      android: ['Open this page in <b>Chrome</b>.',
+                'Tap the <b>⋮</b> menu at the top and scroll to the end of the menu.',
+                'Choose <b>“Install app”</b> or <b>“Add to Home screen”</b>.'],
+      other: ['Open this page in Chrome or Safari on your phone, then choose “Add to Home Screen” from the menu.'] },
+    fr: { btn: 'Installer l’application sur le téléphone', title: 'Installer l’application sur le téléphone', close: 'Fermer',
+      ios: ['Ouvrez cette page dans <b>Safari</b>.', 'Touchez le bouton <b>Partager</b> (le carré avec une flèche) en bas ou en haut de l’écran.', 'Choisissez <b>« Sur l’écran d’accueil »</b>, puis <b>Ajouter</b>.'],
+      android: ['Ouvrez cette page dans <b>Chrome</b>.', 'Touchez le menu <b>⋮</b> en haut et faites défiler jusqu’à la fin du menu.', 'Choisissez <b>« Installer l’application »</b> ou <b>« Ajouter à l’écran d’accueil »</b>.'] },
+    hi: { btn: 'फ़ोन पर ऐप इंस्टॉल करें', title: 'फ़ोन पर ऐप इंस्टॉल करें', close: 'बंद करें',
+      ios: ['इस पेज को <b>Safari</b> में खोलें।', 'स्क्रीन के नीचे या ऊपर <b>Share</b> बटन (तीर वाला वर्ग) दबाएँ।', '<b>“होम स्क्रीन में जोड़ें”</b> चुनें, फिर <b>जोड़ें</b>।'],
+      android: ['इस पेज को <b>Chrome</b> में खोलें।', 'ऊपर <b>⋮</b> मेनू दबाएँ और मेनू के अंत तक स्क्रॉल करें।', '<b>“ऐप इंस्टॉल करें”</b> या <b>“होम स्क्रीन में जोड़ें”</b> चुनें।'] },
+    zh: { btn: '将应用安装到手机', title: '将应用安装到手机', close: '关闭',
+      ios: ['在 <b>Safari</b> 中打开此页面。', '点击屏幕底部或顶部的<b>分享</b>按钮（带箭头的方框）。', '选择<b>“添加到主屏幕”</b>，然后点<b>添加</b>。'],
+      android: ['在 <b>Chrome</b> 中打开此页面。', '点击顶部的 <b>⋮</b> 菜单并滚动到菜单末尾。', '选择<b>“安装应用”</b>或<b>“添加到主屏幕”</b>。'] },
+    tr: { btn: 'Uygulamayı telefona yükle', title: 'Uygulamayı telefona yükle', close: 'Kapat',
+      ios: ['Bu sayfayı <b>Safari</b>’de açın.', 'Ekranın altındaki veya üstündeki <b>Paylaş</b> düğmesine (oklu kare) dokunun.', '<b>“Ana Ekrana Ekle”</b>yi seçin, sonra <b>Ekle</b>’ye dokunun.'],
+      android: ['Bu sayfayı <b>Chrome</b>’da açın.', 'Üstteki <b>⋮</b> menüsüne dokunun ve menünün sonuna kaydırın.', '<b>“Uygulamayı yükle”</b> veya <b>“Ana ekrana ekle”</b>yi seçin.'] },
+    ru: { btn: 'Установить приложение на телефон', title: 'Установить приложение на телефон', close: 'Закрыть',
+      ios: ['Откройте эту страницу в <b>Safari</b>.', 'Нажмите кнопку <b>«Поделиться»</b> (квадрат со стрелкой) внизу или вверху экрана.', 'Выберите <b>«На экран Домой»</b>, затем <b>«Добавить»</b>.'],
+      android: ['Откройте эту страницу в <b>Chrome</b>.', 'Нажмите меню <b>⋮</b> вверху и прокрутите до конца меню.', 'Выберите <b>«Установить приложение»</b> или <b>«Добавить на главный экран»</b>.'] },
+    de: { btn: 'App auf dem Telefon installieren', title: 'App auf dem Telefon installieren', close: 'Schließen',
+      ios: ['Öffnen Sie diese Seite in <b>Safari</b>.', 'Tippen Sie auf die <b>Teilen</b>-Schaltfläche (Quadrat mit Pfeil) unten oder oben auf dem Bildschirm.', 'Wählen Sie <b>„Zum Home-Bildschirm“</b>, dann <b>Hinzufügen</b>.'],
+      android: ['Öffnen Sie diese Seite in <b>Chrome</b>.', 'Tippen Sie oben auf das Menü <b>⋮</b> und scrollen Sie bis zum Ende des Menüs.', 'Wählen Sie <b>„App installieren“</b> oder <b>„Zum Startbildschirm hinzufügen“</b>.'] }
+  };
+  function lang() { var l = (document.documentElement.getAttribute('lang') || 'ar').slice(0, 2); return L[l] ? l : 'en'; }
+  function tx(k) { var l = L[lang()]; return (l && l[k]) || L.en[k]; }
+  var deferred = null, pending = false;
+  function refresh() {
+    pending = false;
+    var b = document.getElementById('pwa-install');
+    if (!b) return;
+    if (installed()) { b.hidden = true; return; }
+    var label = tx('btn');
+    if (b.textContent !== label) b.textContent = label;
+    if (b.hidden) b.hidden = false;
+  }
+  function schedule() { if (pending) return; pending = true; (window.requestAnimationFrame || setTimeout)(refresh); }
+  window.addEventListener('beforeinstallprompt', function (e) { e.preventDefault(); deferred = e; schedule(); });
+  window.addEventListener('appinstalled', function () { deferred = null; schedule(); });
+  function sheet() {
+    var steps = isIOS ? tx('ios') : (isAndroid ? tx('android') : (L[lang()].other || L.en.other));
+    var old = document.getElementById('pwa-sheet');
+    if (old) old.parentNode.removeChild(old);
+    var wrap = document.createElement('div');
+    wrap.id = 'pwa-sheet';
+    wrap.setAttribute('dir', lang() === 'ar' ? 'rtl' : 'ltr');
+    wrap.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;z-index:10000;background:rgba(0,0,0,.45);' +
+      'display:flex;align-items:flex-end;justify-content:center';
+    var html = '<div style="background:#fff;color:#2C2721;width:100%;max-width:520px;border-radius:22px 22px 0 0;' +
+      'padding:20px 20px calc(24px + env(safe-area-inset-bottom,0px));' +
+      'font:16px/1.7 -apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,system-ui,sans-serif;box-shadow:0 -10px 30px rgba(0,0,0,.25)">' +
+      '<div style="font-size:19px;font-weight:800;margin-bottom:8px">' + tx('title') + '</div><ol style="margin:0;padding-inline-start:22px">';
+    for (var i = 0; i < steps.length; i++) html += '<li style="margin:6px 0">' + steps[i] + '</li>';
+    html += '</ol><button type="button" id="pwa-sheet-close" style="margin-top:16px;width:100%;padding:14px;border:0;border-radius:14px;' +
+      'background:#3E7A44;color:#fff;font:700 16px -apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,system-ui,sans-serif;cursor:pointer">' +
+      tx('close') + '</button></div>';
+    wrap.innerHTML = html;
+    wrap.addEventListener('click', function (ev) {
+      if (ev.target === wrap || ev.target.id === 'pwa-sheet-close') wrap.parentNode.removeChild(wrap);
+    });
+    document.body.appendChild(wrap);
+  }
+  document.addEventListener('click', function (ev) {
+    var el = ev.target;
+    while (el && el.id !== 'pwa-install') el = el.parentNode;
+    if (!el) return;
+    document.documentElement.setAttribute('data-pwa-click', deferred ? 'prompt' : 'sheet');
+    if (deferred) {
+      var p = deferred; deferred = null;
+      p.prompt();
+      if (p.userChoice) p.userChoice.then(schedule, schedule);
+    } else sheet();
+  });
+  if (window.MutationObserver) {
+    new MutationObserver(schedule).observe(document.documentElement,
+      { childList: true, subtree: true, attributes: true, attributeFilter: ['lang'] });
+  }
+  window.addEventListener('load', schedule);
+  schedule();
+})();
+</script>
+
+<script>
+/* يسجّل عامل الخدمة الموحّد (sw.js في جذر الموقع) ليعمل التطبيق كلّه بلا إنترنت بعد أول فتح من الرابط
+   (لا يعمل عند فتح الملف محلياً، وهذا طبيعي). التحديث تلقائي: كلّما فُتح التطبيق ومعه إنترنت يُفحص وجود نسخة
+   أجدد وتُنزَّل في الخلفية، ثم يظهر شريط «يتوفّر تحديث جديد» وضغطة واحدة تعيد التحميل بالنسخة الجديدة. */
+if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
+  window.addEventListener('load', function () {
+    var REL = './';
+    var shown = false;
+    function offerUpdate() {
+      if (shown) return; shown = true;
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.textContent = 'يتوفّر تحديث جديد — اضغط للتحديث · Update available — tap to refresh';
+      b.style.cssText = 'position:fixed;left:12px;right:12px;bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:9999;' +
+        'padding:14px 16px;border:0;border-radius:14px;background:#3E7A44;color:#fff;' +
+        'font:700 15px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;' +
+        'box-shadow:0 8px 24px -8px rgba(0,0,0,.45);cursor:pointer;direction:rtl;text-align:center';
+      b.onclick = function () { b.disabled = true; location.reload(); };
+      document.body.appendChild(b);
+    }
+    /* عمّال الخدمة القدامى (نسخة كان لكل تطبيق عامل خاص) يُزالون */
+    navigator.serviceWorker.getRegistrations().then(function (rs) {
+      rs.forEach(function (r) { if (new RegExp('/(humoral|mazag)/$').test(r.scope)) r.unregister(); });
+    }).catch(function () {});
+    navigator.serviceWorker.register(REL + 'sw.js', { scope: REL }).then(function (reg) {
+      if (reg.waiting && navigator.serviceWorker.controller) offerUpdate();
+      reg.addEventListener('updatefound', function () {
+        var nw = reg.installing;
+        if (!nw) return;
+        nw.addEventListener('statechange', function () {
+          if (nw.state === 'installed' && navigator.serviceWorker.controller) offerUpdate();
+        });
+      });
+      document.addEventListener('visibilitychange', function () {
+        if (document.visibilityState === 'visible') reg.update().catch(function () {});
+      });
+    }).catch(function () {});
+  });
+}
+</script>
+
 </body>
 </html>
