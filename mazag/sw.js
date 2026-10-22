@@ -1,6 +1,6 @@
 /* عامل الخدمة (Service Worker) — يحفظ التطبيق على الجهاز ليعمل بلا إنترنت.
    عند تحديث index.html ارفع رقم الإصدار في السطر التالي حتى يأخذ الجميع النسخة الجديدة. */
-var VERSION = 'mazag-v1.0.0-web2';
+var VERSION = 'mazag-v1.0.0-web3';
 var FILES = ["./", "./index.html", "./manifest.webmanifest", "./icons/icon-192.png", "./icons/icon-512.png", "./icons/maskable-512.png", "./icons/apple-touch-icon-180.png", "./icons/favicon-64.png"];
 
 self.addEventListener('install', function (e) {
