@@ -735,10 +735,38 @@ if(!document.querySelector('[data-k="date"]').value){
 }
 </script>
 <script>
-/* يسجّل عامل الخدمة ليعمل التطبيق بلا إنترنت بعد أول فتح من الرابط (لا يعمل عند فتح الملف محلياً، وهذا طبيعي) */
+/* يسجّل عامل الخدمة ليعمل التطبيق بلا إنترنت بعد أول فتح من الرابط (لا يعمل عند فتح الملف محلياً، وهذا طبيعي).
+   التحديث تلقائي: كلّما فُتح التطبيق ومعه إنترنت يُفحص وجود نسخة أجدد وتُنزَّل في الخلفية،
+   ثم يظهر شريط صغير «يتوفّر تحديث جديد» وضغطة واحدة تعيد التحميل بالنسخة الجديدة. */
 if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
   window.addEventListener('load', function () {
-    navigator.serviceWorker.register('sw.js').catch(function () {});
+    var shown = false;
+    function offerUpdate() {
+      if (shown) return; shown = true;
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.textContent = 'يتوفّر تحديث جديد — اضغط للتحديث · Update available — tap to refresh';
+      b.style.cssText = 'position:fixed;left:12px;right:12px;bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:9999;' +
+        'padding:14px 16px;border:0;border-radius:14px;background:#3E7A44;color:#fff;' +
+        'font:700 15px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;' +
+        'box-shadow:0 8px 24px -8px rgba(0,0,0,.45);cursor:pointer;direction:rtl;text-align:center';
+      b.onclick = function () { b.disabled = true; location.reload(); };
+      document.body.appendChild(b);
+    }
+    navigator.serviceWorker.register('sw.js').then(function (reg) {
+      if (reg.waiting && navigator.serviceWorker.controller) offerUpdate();
+      reg.addEventListener('updatefound', function () {
+        var nw = reg.installing;
+        if (!nw) return;
+        nw.addEventListener('statechange', function () {
+          if (nw.state === 'installed' && navigator.serviceWorker.controller) offerUpdate();
+        });
+      });
+      /* فحص إضافي كلّما عاد المستخدم إلى التطبيق */
+      document.addEventListener('visibilitychange', function () {
+        if (document.visibilityState === 'visible') reg.update().catch(function () {});
+      });
+    }).catch(function () {});
   });
 }
 </script>
