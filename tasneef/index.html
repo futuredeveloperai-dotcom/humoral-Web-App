@@ -129,6 +129,15 @@ textarea{min-height:90px;resize:vertical}
   </div>
 </main>
 
+<!-- نموذج مخفي يكتشفه Netlify عند النشر؛ الإرسال الفعلي يتم بالسكربت إلى العنوان نفسه -->
+<form name="tasneef" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input type="hidden" name="form-name" value="tasneef">
+  <input type="text" name="bot-field">
+  <input type="text" name="name">
+  <textarea name="text"></textarea>
+  <textarea name="json"></textarea>
+</form>
+
 <div class="bar"><div class="bar-in">
   <div class="prog" id="prog"></div>
   <div class="btns">
@@ -318,11 +327,31 @@ textarea{min-height:90px;resize:vertical}
   function status(m){ $('status').textContent = m; setTimeout(function(){ $('status').textContent = ''; }, 3000); }
   function confirmIncomplete(){ return progress() || window.confirm('بعض الخيارات لم تُصنَّف بعد. تريد الإرسال كما هي؟'); }
 
-  $('send').onclick = function(){
-    if (!confirmIncomplete()) return;
-    var text = build();
+  /* الإرسال المباشر: تُحفظ الإجابات على الموقع (Netlify Forms) ويصل تنبيه بالبريد فوراً؛ وإن تعذّر (بلا إنترنت) نفتح المشاركة */
+  function shareFallback(text){
     if (navigator.share){ navigator.share({title:'تصنيف الأسئلة الجديدة', text:text}).then(function(){ status('تمّ الإرسال'); }).catch(function(){ }); }
     else { window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank'); }
+  }
+  $('send').onclick = function(){
+    if (!confirmIncomplete()) return;
+    var text = build(), btn = $('send');
+    var body = 'form-name=tasneef&name=' + encodeURIComponent(S.name || '') + '&text=' + encodeURIComponent(text) +
+      '&json=' + encodeURIComponent(JSON.stringify({q:S.q, qo:S.qo, x:S.extra, n:S.notes, a:S.a, an:S.an, b:S.b, bn:S.bn, c:$('c-text').value, ct:S.ct, cn:S.cn, more:S.more, name:S.name}));
+    if (!/^https?:$/.test(location.protocol) || !window.fetch){ shareFallback(text); return; }
+    btn.disabled = true; btn.textContent = 'جارٍ الإرسال…';
+    fetch(location.pathname, { method:'POST', headers:{'Content-Type':'application/x-www-form-urlencoded'}, body: body })
+      .then(function(res){
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        btn.textContent = 'وصلت الإجابات ✓';
+        $('preview').textContent = 'وصلت إجاباتك مباشرة إلى الأستاذ بيهس. شكراً لك.\n\nإذا أحببت، يمكنك أيضاً إرسال نسخة عبر واتساب بالزر «واتساب» في الأسفل.';
+        $('sheet').classList.add('open');
+        setTimeout(function(){ btn.disabled = false; btn.textContent = 'إرسال الإجابات'; }, 4000);
+      })
+      .catch(function(){
+        btn.disabled = false; btn.textContent = 'إرسال الإجابات';
+        status('تعذّر الإرسال المباشر، افتح المشاركة');
+        shareFallback(text);
+      });
   };
   $('wa').onclick = function(){ if (!confirmIncomplete()) return; window.open('https://wa.me/?text=' + encodeURIComponent(build()), '_blank'); };
   $('copy').onclick = function(){
