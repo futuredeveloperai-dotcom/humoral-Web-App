@@ -1,6 +1,6 @@
 /* عامل الخدمة الموحّد لموقع دار التداوي — يحفظ الصفحة الجامعة والتطبيقين والأيقونات على الجهاز ليعمل كل شيء بلا إنترنت.
    عند أي تحديث للملفات يرفع سكربت البناء رقم الإصدار في السطر التالي حتى يأخذ الجميع النسخة الجديدة. */
-var VERSION = 'tadawi-v4';
+var VERSION = 'tadawi-v5';
 var FILES = ["./", "./index.html", "./manifest.webmanifest", "./humoral/", "./humoral/index.html", "./mazag/", "./mazag/index.html", "./icons/icon-192.png", "./icons/icon-512.png", "./icons/maskable-512.png", "./icons/apple-touch-icon-180.png", "./icons/favicon-64.png"];
 
 self.addEventListener('install', function (e) {
